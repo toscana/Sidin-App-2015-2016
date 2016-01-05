@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="C:\Users\bert\Documents\android\git\Sid-In App 2013 Android Studio\app\src\main\assets"><file name="postcodes.db" path="C:\Users\bert\Documents\android\git\Sid-In App 2013 Android Studio\app\src\main\assets\postcodes.db"/></source></dataSet><dataSet config="debug"><source path="C:\Users\bert\Documents\android\git\Sid-In App 2013 Android Studio\app\src\debug\assets"/></dataSet></merger>

@@ -1,0 +1,8 @@
+C:\Users\bert\Documents\android\git\Sid-In App 2013 Android Studio\app\build\intermediates\classes\debug
+C:\Users\bert\Documents\android\git\Sid-In App 2013 Android Studio\app\build\intermediates\pre-dexed\debug\org.restlet.ext.jackson-fd5905fd107f5634d6c14b5cf1cf89f27d9e47ab.jar
+C:\Users\bert\Documents\android\git\Sid-In App 2013 Android Studio\app\build\intermediates\pre-dexed\debug\org.restlet.ext.httpclient-759b55040c151ce72aa1a631331b6627e6d62fe3.jar
+C:\Users\bert\Documents\android\git\Sid-In App 2013 Android Studio\app\build\intermediates\pre-dexed\debug\org.codehaus.jackson.core-6395bcfb64837976eecd28490aea72189d39fe07.jar
+C:\Users\bert\Documents\android\git\Sid-In App 2013 Android Studio\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-cc69551333ccca25aaf13002034bf560578a3127.jar
+C:\Users\bert\Documents\android\git\Sid-In App 2013 Android Studio\app\build\intermediates\pre-dexed\debug\org.codehaus.jackson.mapper-d35aa01441348c2e5288add4b2bcb76eb6a1f757.jar
+C:\Users\bert\Documents\android\git\Sid-In App 2013 Android Studio\app\build\intermediates\pre-dexed\debug\org.restlet-ef1a58415d9799ecb42ecad3bce0d9c8e7b0a6a6.jar
+C:\Users\bert\Documents\android\git\Sid-In App 2013 Android Studio\app\build\intermediates\pre-dexed\debug\db4o-8.0.249.16098-core-java5-326c47af19582f1dac40e2255b2254c9600087ba.jar
