@@ -43,6 +43,7 @@
     <string name="txtLastNameField">Familienaam</string>
     <string name="txtLoginLoading">Even geduld, gegevens worden opgehaald...</string>
     <string name="txtSchool">School</string>
+    <string name="txtSchoolNotInList">School staat niet in lijst</string>
     <string name="txtStreetField">Straat</string>
     <string name="txtStreetNumberField">Nummer</string>
     <string name="txtSynchronizeTime">Laatste synchronisatie uitgevoerd op </string>

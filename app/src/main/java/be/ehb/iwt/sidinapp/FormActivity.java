@@ -87,6 +87,7 @@ public class FormActivity extends FragmentActivity implements TextWatcher,
 	private School mSchoolToSave;
 	private int nbCharsSchoolOld = 0;
 	private int nbCharsSchoolNew = 0;
+    private CheckBox mCheckBoxSchoolNotInList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -186,7 +187,7 @@ public class FormActivity extends FragmentActivity implements TextWatcher,
 		    	    mActivityRootView.getWindowVisibleDisplayFrame(r);
 		    	    
 		    	    int heightDiff = mActivityRootView.getRootView().getHeight() - (r.bottom - r.top);
-		    	    Log.d("bert","getheight is " + mActivityRootView.getRootView().getHeight()+ "other is "  +(r.bottom - r.top)); 
+		    	    //Log.d("bert","getheight is " + mActivityRootView.getRootView().getHeight()+ "other is "  +(r.bottom - r.top));
 		    	    if (heightDiff == 0) { // if more than 100 pixels, its probably a keyboard...
 		    	        //... do something here
 		    	    	mScrollView.scrollTo(0, 0);
@@ -230,11 +231,11 @@ public class FormActivity extends FragmentActivity implements TextWatcher,
 								.get(0)
 								.getEmail()
 								.equalsIgnoreCase(
-										mSearchStudentField.getText().toString())) {
+                                        mSearchStudentField.getText().toString())) {
 							fillFormWithSubscription(subList.get(0));
 							InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 							imm.hideSoftInputFromWindow(
-									mSearchStudentField.getWindowToken(), 0);
+                                    mSearchStudentField.getWindowToken(), 0);
 						}
 
 				}
@@ -274,18 +275,17 @@ public class FormActivity extends FragmentActivity implements TextWatcher,
 					List<School> subList = Db4oHelper.getInstance(FormActivity.this).querySchools(name);
 					mSearchSchoolAdapter.setList(subList);
 					if (subList != null && subList.size() != 0)
-						Log.d("bert","itsgonnabe"  + subList.get(0).getName());
+
+
 						if (subList.get(0).getName().equalsIgnoreCase(mSearchSchoolField.getText().toString()))
 						{
-							Log.d("bert","goed zo");
+						Log.d("bert","goed zo");
 						fillFormWithSchool(subList.get(0));
 						}
-					else
-						{
-							Log.d("bert","pech");
-						}
-
-
+				}
+				else if(name.length() == 0){
+					Log.d("bert","setting to null");
+					mSchoolToSave = null;
 				}
 
 			}
@@ -295,7 +295,6 @@ public class FormActivity extends FragmentActivity implements TextWatcher,
 
 	protected void fillFormWithSchool(School school) {
 		// TODO Auto-generated method stub
-
 		//mSearchSchoolField.setText(school.getNumberInstitution());
 		mSchoolToSave = school;
 
@@ -338,6 +337,7 @@ public class FormActivity extends FragmentActivity implements TextWatcher,
 		resetForm(l);
 		mSpinnerCityAdapter.setZips(new ArrayList<String>());
 		mSchoolToSave = null;
+        mSearchSchoolField.setEnabled(true);
 	}
 
 	private void initializeGuiFields() {
@@ -350,6 +350,7 @@ public class FormActivity extends FragmentActivity implements TextWatcher,
 		mCheckBoxDigX = (CheckBox) findViewById(R.id.checkBoxDigx);
 		mCheckBoxMultec = (CheckBox) findViewById(R.id.checkBoxMultec);
 		mCheckBoxWorkStudent = (CheckBox) findViewById(R.id.checkBoxWerkstudent);
+        mCheckBoxSchoolNotInList = (CheckBox)findViewById(R.id.checkBoxSchoolNotInList);
 
 		mEditTextZip = (EditText) findViewById(R.id.editTextZip);
 		mSpinnerCity = (Spinner) findViewById(R.id.spinnerCity);
@@ -363,6 +364,7 @@ public class FormActivity extends FragmentActivity implements TextWatcher,
 		mScrollView = (ScrollView) findViewById(R.id.scrollView1);
 
 		mSearchSchoolField = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextViewSearchSchool);
+
 
 	}
 
@@ -494,36 +496,37 @@ public class FormActivity extends FragmentActivity implements TextWatcher,
 		String temp = mEditTextFirstName.getText().toString();
 		if (temp.length() == 0) {
 			ok = false;
-			mErrorMessageFields += "\n naam";
+			mErrorMessageFields += "\n    naam";
 		}
 
 		temp = mEditTextLastName.getText().toString();
 		if (temp.length() == 0) {
 			ok = false;
-			mErrorMessageFields += "\n voornaam";
+			mErrorMessageFields += "\n    voornaam";
 		}
 
 		temp = mEditTextZip.getText().toString();
 		if (temp.length() != 4 && temp.length() != 0) {
 			ok = false;
-			mErrorMessageFields += "\n postcode";
+			mErrorMessageFields += "\n    postcode";
 		}
 
 		temp = mEditTextEmail.getText().toString();
 		if (temp.length() == 0) {
 			ok = false;
-			mErrorMessageFields += "\n email";
+			mErrorMessageFields += "\n    email";
 		}
 
 		Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
 		Matcher m = p.matcher(temp);
 		if (!m.matches()) {
 			ok = false;
-			mErrorMessageFields += "\n email (geen geldig email adres)";
+			mErrorMessageFields += "\n    email (geen geldig email adres)";
 		}
 
 		if(mSchoolToSave == null){
-			mErrorMessageFields += "\n Gelieve je huidige school aan te duiden";
+			mErrorMessageFields += "\n    gelieve huidige school te kiezen in de lijst";
+			ok = false;
 		}
 
 		/*
@@ -535,10 +538,22 @@ public class FormActivity extends FragmentActivity implements TextWatcher,
 		if (!(mCheckBoxDigX.isChecked() || mCheckBoxMultec.isChecked() || mCheckBoxWorkStudent
 				.isChecked())) {
 			ok = false;
-			mErrorMessageFields += "\n kies minstens 1 opleiding waarin je interesse hebt";
+			mErrorMessageFields += "\n    kies minstens 1 opleiding waarin je interesse hebt";
 		}
 		return ok;
 	}
+
+    public void schoolNotInListClicked(View v){
+        CheckBox cb = (CheckBox)v;
+        if(cb.isChecked()){
+            mSearchSchoolField.setEnabled(false);
+            mSchoolToSave = Db4oHelper.getInstance(this).getEmptySchool();
+        }
+        else{
+            mSearchSchoolField.setEnabled(true);
+            mSchoolToSave = null;
+        }
+    }
 
 	@Override
 	public void onClick(View arg0) {
@@ -600,7 +615,7 @@ public class FormActivity extends FragmentActivity implements TextWatcher,
 			}
 
 
-			Log.d("bert","wanna sleep" + mSchoolToSave);
+			//Log.d("bert","wanna sleep" + mSchoolToSave);
 
 			Db4oHelper.getInstance(this).storeSubscription(
 					new Subscription(mEditTextFirstName.getText().toString(),
@@ -636,7 +651,7 @@ public class FormActivity extends FragmentActivity implements TextWatcher,
 		
 		
 		if (hasFocus) {
-			Log.d("bert", "scroling to " +((TableRow)v.getParent()).getTop());
+			//Log.d("bert", "scroling to " +((TableRow)v.getParent()).getTop());
 			new Handler().post(new Runnable() {
 				@Override
 				public void run() {

@@ -312,5 +312,24 @@ public class Db4oHelper {
     }
 
 
+    public School getEmptySchool() {
+        School empty;
+        openSchool();
+        ObjectSet<School> geenschool = oc.query(new Predicate<School>() {
+            /**
+             *
+             */
+            private static final long serialVersionUID = 2489327875277810856L;
 
+            public boolean match(School s) {
+                return s.getName().equalsIgnoreCase("School niet in lijst");
+
+            }
+        });
+
+        empty = geenschool.get(0);
+        close();
+
+        return empty;
+    }
 }

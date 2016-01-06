@@ -24,18 +24,19 @@ public final class R {
     }
     public static final class id {
         public static final int TextViewLoginLoading=0x7f080013;
-        public static final int autoCompleteTextViewSearchSchool=0x7f080032;
-        public static final int autoCompleteTextViewSearchStudent=0x7f08003b;
+        public static final int autoCompleteTextViewSearchSchool=0x7f080033;
+        public static final int autoCompleteTextViewSearchStudent=0x7f08003e;
         public static final int buttonDeptCodeNext=0x7f080002;
-        public static final int buttonEraseData=0x7f08003a;
+        public static final int buttonEraseData=0x7f08003d;
         public static final int buttonLogIn=0x7f080011;
-        public static final int buttonSaveData=0x7f080039;
+        public static final int buttonSaveData=0x7f08003c;
         public static final int buttonSynchronize=0x7f080015;
         public static final int buttonTryAgain=0x7f080003;
         public static final int buttonTryAgainLogin=0x7f080014;
-        public static final int checkBoxDigx=0x7f080034;
-        public static final int checkBoxMultec=0x7f080036;
-        public static final int checkBoxWerkstudent=0x7f080038;
+        public static final int checkBoxDigx=0x7f080037;
+        public static final int checkBoxMultec=0x7f080039;
+        public static final int checkBoxSchoolNotInList=0x7f080035;
+        public static final int checkBoxWerkstudent=0x7f08003b;
         public static final int editTextDeptCode=0x7f080000;
         public static final int editTextEmail=0x7f080020;
         public static final int editTextFirstName=0x7f080022;
@@ -44,12 +45,12 @@ public final class R {
         public static final int editTextStreetNumber=0x7f08002a;
         public static final int editTextZip=0x7f08002d;
         public static final int formActivityRoot=0x7f08001a;
-        public static final int imageSwitcher=0x7f08003c;
+        public static final int imageSwitcher=0x7f08003f;
         public static final int imageView1=0x7f08001b;
-        public static final int imageView2=0x7f080035;
-        public static final int imageView3=0x7f080037;
+        public static final int imageView2=0x7f080038;
+        public static final int imageView3=0x7f08003a;
         public static final int linearLayoutForm=0x7f08001c;
-        public static final int menu_settings=0x7f08003f;
+        public static final int menu_settings=0x7f080042;
         public static final int progressBarDeptScreen=0x7f080004;
         public static final int progressBarLogin=0x7f080012;
         public static final int scrollView1=0x7f08001d;
@@ -59,12 +60,14 @@ public final class R {
         public static final int tableLayoutForm=0x7f08001e;
         public static final int tableLayoutLoginScreen=0x7f080009;
         public static final int tableRow1=0x7f08000a;
+        public static final int tableRow10=0x7f080034;
         public static final int tableRow2=0x7f080010;
         public static final int tableRow3=0x7f08000d;
         public static final int tableRow4=0x7f080025;
         public static final int tableRow5=0x7f080028;
         public static final int tableRow6=0x7f08002b;
         public static final int tableRow8=0x7f08002e;
+        public static final int tableRow9=0x7f080031;
         public static final int textView2=0x7f08000b;
         public static final int textView3=0x7f08000e;
         public static final int textViewCity=0x7f08002f;
@@ -72,11 +75,11 @@ public final class R {
         public static final int textViewDeptScreenLoadText=0x7f080005;
         public static final int textViewEmail=0x7f08001f;
         public static final int textViewFirstName=0x7f080021;
-        public static final int textViewGeinteresseerdIn=0x7f080033;
+        public static final int textViewGeinteresseerdIn=0x7f080036;
         public static final int textViewLastName=0x7f080023;
-        public static final int textViewSchool=0x7f080031;
-        public static final int textViewSearchFieldEmail=0x7f08003d;
-        public static final int textViewSearchFieldName=0x7f08003e;
+        public static final int textViewSchool=0x7f080032;
+        public static final int textViewSearchFieldEmail=0x7f080040;
+        public static final int textViewSearchFieldName=0x7f080041;
         public static final int textViewSearchFieldSchoolCity=0x7f080018;
         public static final int textViewSearchFieldSchoolName=0x7f080017;
         public static final int textViewSpinner=0x7f080019;
@@ -141,11 +144,12 @@ public final class R {
         public static final int txtLastNameField=0x7f050023;
         public static final int txtLoginLoading=0x7f050024;
         public static final int txtSchool=0x7f050025;
-        public static final int txtStreetField=0x7f050026;
-        public static final int txtStreetNumberField=0x7f050027;
-        public static final int txtSynchronizeTime=0x7f050028;
-        public static final int txtSynchronizing=0x7f050029;
-        public static final int txtZipField=0x7f05002a;
+        public static final int txtSchoolNotInList=0x7f050026;
+        public static final int txtStreetField=0x7f050027;
+        public static final int txtStreetNumberField=0x7f050028;
+        public static final int txtSynchronizeTime=0x7f050029;
+        public static final int txtSynchronizing=0x7f05002a;
+        public static final int txtZipField=0x7f05002b;
     }
     public static final class style {
         /** 

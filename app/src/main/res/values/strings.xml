@@ -44,5 +44,6 @@
     <string name="txtSynchronizeTime">Laatste synchronisatie uitgevoerd op </string>
     <string name="txtSchool">School</string>
     <string name="hintTypSchool">Naam van school of gemeente</string>
+    <string name="txtSchoolNotInList">School staat niet in lijst</string>
 
 </resources>
