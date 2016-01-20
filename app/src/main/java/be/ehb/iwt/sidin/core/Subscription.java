@@ -200,8 +200,6 @@ public class Subscription implements Serializable {
 	public Long getId() {
 		return id;
 	}
-	
-	
-	
+
 
 }

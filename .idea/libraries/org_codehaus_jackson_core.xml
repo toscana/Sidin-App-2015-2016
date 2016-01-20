@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="org.codehaus.jackson.core">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/org.codehaus.jackson.core.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

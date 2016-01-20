@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="org.codehaus.jackson.mapper">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/org.codehaus.jackson.mapper.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

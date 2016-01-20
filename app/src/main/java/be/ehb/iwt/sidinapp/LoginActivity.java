@@ -98,7 +98,12 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 
 		}
 	}
-	
+
+
+	public void click(View v){
+		Db4oHelper.getInstance(this).recoverInfo();
+
+	}
 	
 
 	@Override
@@ -213,10 +218,10 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 			
 			SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 			String dateString = sd.format(new Date());
-			editor.putString(Utilities.SYNCH_TIME,dateString);
+			editor.putString(Utilities.SYNCH_TIME, dateString);
 			editor.commit();
 			Resources r = getResources();
-			mTextViewSynchronizeInfo.setText(r.getString(R.string.txtSynchronizeTime) + " "+ dateString);
+			mTextViewSynchronizeInfo.setText(r.getString(R.string.txtSynchronizeTime) + " " + dateString);
 
 		}
 	}
@@ -254,6 +259,9 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 		List<Teacher> teachers = Db4oHelper.getInstance(this)
 				.retrieveAllTeachers();
 		Collections.sort(teachers);
+
+		for(Teacher t:teachers)
+		Log.d("bert","teacher " + t.getName() + t.getId() + t.toString());
 
 		Spinner spinner = (Spinner) findViewById(R.id.spinnerTeacher);
 	
@@ -390,6 +398,8 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 		}
 
 	}
+
+
 
 	public void subscriptionUploadFinished(Boolean result) {
 		if(result.booleanValue()){

@@ -1,6 +1,13 @@
 package be.ehb.iwt.sidinapp.persistence;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,7 +29,9 @@ import com.db4o.query.Predicate;
 public class Db4oHelper {
 
 	private static Db4oHelper uniqueInstance = new Db4oHelper();
-	private static final String SIDINDB_DB4O = "sidindb.db4o";
+	private static final String SIDINDB_SUBSCRIPTIONS = "sidindb.db4o";
+	private static final String SIDINDB_TEACHERS = "sidindbteachers.db4o";
+	private static final String SIDINDB_EVENTS = "sidindbevents.db4o";
 
 
 
@@ -51,7 +60,7 @@ public class Db4oHelper {
 	}
 	
 	private String db4oDBFullPathTeacher(Context ctx) {
-		return ctx.getDir("data", 0) + "/" + SIDINDB_DB4O;
+		return ctx.getDir("data", 0) + "/" + SIDINDB_TEACHERS;
 	}
 
 	/**
@@ -73,7 +82,7 @@ public class Db4oHelper {
 	}
 	
 	private String db4oDBFullPathSubscription(Context context) {
-		return context.getDir("data", 0) + "/" + SIDINDB_DB4O;
+		return context.getDir("data", 0) + "/" + SIDINDB_SUBSCRIPTIONS;
 	}
 
 	/**
@@ -107,15 +116,15 @@ public class Db4oHelper {
 	}
 
 	private String db4oDBFullPathSchools(Context context) {
-		return context.getDir("data", 0) + "/" + SIDINDB_DB4O;
+		return context.getDir("data", 0) + "/" + SIDINDB_SUBSCRIPTIONS;
 	}
 
 	private String db4oDBFullPathEvents(Context context) {
-		return context.getDir("data", 0) + "/" + SIDINDB_DB4O;
+		return context.getDir("data", 0) + "/" + SIDINDB_EVENTS;
 	}
 
 	public boolean exists() {
-		File file = new File(context.getDir("data", 0), SIDINDB_DB4O);
+		File file = new File(context.getDir("data", 0), SIDINDB_SUBSCRIPTIONS);
 		return file.exists();
 	}
 
@@ -196,7 +205,61 @@ public class Db4oHelper {
 		openSubscription();
 		oc.store(subscription);
 		close();
+
+		//backup voor als het misloopt
+		String FILENAME = "backup.txt";
+
+		FileOutputStream fos = null;
+		try {
+
+			fos = context.openFileOutput(FILENAME, Context.MODE_APPEND);
+			//FileWriter fw = new FileWriter(fos);
+			fos.write(getCsvString(subscription).getBytes());
+			Log.d("bert","writte to file: " + getCsvString(subscription));
+			fos.close();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+
 	}
+	public String getCsvString(Subscription s) {
+		return s.getFirstName() + "," + s.getLastName() + "," + s.getEmail()+ "," + s.getStreet()+ "," + s.getStreetNumber()+
+				"," + s.getZip() + "," + s.getCity()+ "," + s.getInterests() + "," + s.getEvent().getId() + "," + s.getSchool().getId()+
+				"," + s.getTeacher().getId() + "," + s.getTimestamp();
+	}
+	public void recoverInfo(){
+		String FILENAME = "backup.txt";
+
+		FileInputStream fis = null;
+		try {
+
+			fis = context.openFileInput(FILENAME);
+			String all  = String.valueOf(fis.read());
+			BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+
+			StringBuffer stringBuffer = new StringBuffer();
+			String line;
+			while ((line = reader.readLine()) != null) {
+				stringBuffer.append(line);
+				stringBuffer.append("\n");
+			}
+			Log.d("bert", stringBuffer.toString());
+
+			reader.close();
+
+			fis.close();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	public List<Subscription> retrieveAllSubscriptions() {
 		openSubscription();
